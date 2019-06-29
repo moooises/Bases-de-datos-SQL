@@ -1,0 +1,66 @@
+1)select * from "Tablas"; // Cambiar............ 
+
+2)select prv_nom from Proveedores;
+
+3)select clt_nom,clt_apell from Proveedores;
+
+4)select tda_ger from tiendas;
+
+5)select tda_ger,tda_pob from tiendas;
+
+6)select clt_pob from clientes;
+
+7)select art_nom from articulos;
+
+8)select art_col from articulos;
+
+select distinct clt_pob "localidad" from clientes; //
+
+10)select clt_pob from clientes where clt_pob='madrid';
+
+11)select * from articulos where art_peso>500;
+
+12)select * from clientes where clt_pais not like 'e%'; // 
+
+13)select * from articulos where art_pv>=art_pc*2; // 
+
+14)select vnt_art form ventas where vnt_clt=1;
+
+15)select * from articulos where art_col='rojo' and art_peso>100;
+
+16)select * from articulos where art_col='rojo' or art_peso>500;
+
+17)select * from articulos where not(art_col='rojo') and not(art_peso>500); //
+
+18)select * from articulos where (art_col='rojo' and art_peso>100) or art_col='verde';
+
+19)select * from articulos where art_col not like 'blanco%' and art_col not like 'negro%'; //null cumple esa condicion
+		
+20)select * from articulos where art_pc>=20 and art_pc<=30;
+
+21)select * from articulos where art_peso is null and art_col is null;
+
+22)select * from articulos where art_col='rojo' or art_col='verde';
+
+23)select * from ventas where vnt_fc=910109;
+
+24)select * from clientes where clt_apell like 'ro%';
+
+25)select * from clientes where clt_nom not like 'm%';
+
+26)select * from clientes where clt_apell like 'du___t'; //
+27)select * from articulos where art_col is null;
+
+28)select * from articulos order by art_peso; // de menor a mayor
+
+29)select tda_ger from tiendas order by tda_ger;
+
+30)select * from articulos where art_peso<=100 order by art_peso, art_pc desc; // 
+
+31)select vnt_art from ventas order by vnt_cant;// creo que se refiere a esto
+
+32)select * from ventas order by vnt_cant;
+
+33)select * from articulos where art_prv=2;
+
+34)select * from clientes where clt_pob='pamplona';

@@ -1,0 +1,22 @@
+1)select *from articulos where art_peso <(select art_peso from articulos where art_num=2) order by art_peso;
+2)select art_num, art_nom from articulos where art_peso>(select art_peso from articulos where (art_nom!='calendario or art_col=(select art_col from articulos where art_nom='impresora')));
+3)select * from articulos where art_peso>=(select avg(art_peso) from articulos) or art_peso>(select art_peso from articulos where art_num=10);
+4)select * from proveedores where prv_num=(select distinct art_prv from articulos where art_col='negro');//preguntar el distinct
+5)select clt_nom,clt_apell,clt_pob from clientes where clt_pais='e' and clt_pob in(select clt_pob from clientes where clt_nom like 'pablo%')order by clt_num;
+6) a)select art_nom,art_col,art_pv from articulos a1 where art_pv>=ALL(SELECT art_pv from articulos a2 where a1.art_col=a2.art_col)and art_col is not null;
+6  b)select art_nom,art_col,art_pv*166 from articulos a1 where art_pv>=ALL(SELECT art_pv from articulos a2 where a1.art_col=a2.art_col) and art_col is not null;
+7) select art_nom,art_col,art_pv from articulos a1 where art_pv>=ALL(SELECT art_pv from articulos a2 where a1.art_col=a2.art_col);
+8) select distinct tda_ger from tiendas t1 where tda_num in(select vnt_tda from ventas v1 where vnt_art=2);
+9) select art_nom,art_pv,art_col from articulos where art_pv>(select min(art_pv) from articulos where art_col like 'blanco%');
+10) select art_nom,art_pv,art_col from articulos where art_pv>any(select art_pv from articulos where art_col like 'blanco%');
+11) select art_nom,art_pv,art_col from articulos t1 where EXISTS(select art_pv from articulos t2 where t1.art_pv>t2.art_pv and t2.art_col='blanco');
+12) select clt_nom from clientes where clt_num in(select vnt_clt from ventas v1 group by vnt_clt having sum(vnt_cant*vnt_precio)>(select avg(vnt_precio) from ventas v2));//Comprobar
+13) select clt_num, clt_nom from clientes c1 where clt_num in(select vnt_clt from ventas group by vnt_clt having count( DISTINCT vnt_tda)>=2);
+14) select art_num,art_nom from articulos where art_num in(select vnt_art from ventas group by vnt_art having sum(vnt_cant)>(select avg(vnt_cant) from ventas));
+15)select * from clientes where clt_num = (select vnt_clt from ventas group by vnt_clt having count(DISTINCT vnt_fch)>2);//Comprobar
+16)select * from articulos where art_num in(select vnt_art from ventas where vnt_clt=1);
+17)select * from clientes where clt_num not in(select vnt_clt from ventas where vnt_fch like '92%');
+//////De aqui para adelante voy a omitir las consultas relacionadas con el diseño de las consultas, solo pondre los problemas////////
+18)select distinct * from clientes where clt_pais='e' and clt_num in(select vnt_clt from ventas where vnt_cant>5 group by vnt_clt);
+19)select tda_num,tda_ger from tiendas where tda_num in (select vnt_tda from ventas group by vnt_tda having sum(vnt_cant*vnt_precio)>(select avg(vnt_cant*vnt_precio) from ventas));
+20)select * from clientes where (lower(clt_pob) like 'madrid%' or lower(clt_pob) like 'barcelona%') and clt_num in(select vnt_clt from ventas group by vnt_clt having (count(vnt_clt)<=2 or count(vnt_clt)=0));

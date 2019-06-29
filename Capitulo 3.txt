@@ -1,0 +1,18 @@
+1)select (art_pv-art_pc) "Beneficio" from articulos where art_pc>20;
+2)select avg(art_peso) "Media_Peso" from articulos;
+3)select avg(art_peso)"Media_peso",max(art_pv-art_pc)"Margen",max(art_pv)-min(art_pc)"Diferencia" from articulos where art_col is not null;
+4)select count(distinct art_col) from articulos;
+5)select vnt_tda "Tienda", sum(vnt_cant) from ventas group by vnt_tda;
+6)select count(distinct prv_num) "Nº Proveedores" from proveedores;
+7)select avg(art_pv) "P Venta Medio", art_col "Colores" from articulos group by art_col order by art_col;
+//Si no queremos contar los que no tienen color definido añadimos despues del group by "having art_col is not null"
+8)select avg(art_pv) "P Venta Medio", art_col "Colores" from articulos where art_pc>=6 group by art_col order by art_col;
+9)select art_nom,art_col,count(distinct art_num) from articulos;
+//ERROR: En art_nom la funcion de grupo no es de grupo unico
+10)select count(distinct art_col) "N Colores" art_nom "Nombre" from articulos where art_nom not like 'impresira%' group by art_nom order by art_nom;
+11)select art_nom "Nombre", art_col "Color" from articulos where art_nom not like'impresora%' group by art_col,art_nom;//Preguntar
+12)select art_col "Colores" from articulos group by art_nom having avg(art_pv)>12 order by art_col;// preguntar porpesetas o centimos
+13)select vnt_tda "Tienda",sum(vnt_cant) "Ventas",count(distinct vnt_art) "Articulos" from ventas where vnt_fch>=910109 and vnt_fch<=910113 group by vnt_tda having sum(vnt_cant)>2 
+14)select nvl(art_nom,'indefinido') "Nombre",nvl(art_peso,0) "Peso",nvl(art_pv,0) "Precio Venta", sum(nvl(art_peso,0)) "Suma Pesos",sum(nvl(art_pv,0)) "Suma de P Venta" from articulos; //OJO es Coalesce en mysql
+15)select clt_pob from clientes group by clt_pob order by count(distinct clt_nom) desc;
+16)select upper(clt_pob) from clientes group by clt_pob order by count(distinct clt_nom) desc;

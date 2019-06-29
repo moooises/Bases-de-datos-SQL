@@ -1,0 +1,34 @@
+1)select art_num,art_nom,art_peso,prv_num,prv_nom from articulos,proveedores where prv_num=art_prv and art_col='rojo' order by art_peso;
+2)select * from articulos,proveedores where art_col='rojo';
+3)select clt_num,clt_apell,clt_nom,clt_pais,clt_pob,vnt_fch from clientes,ventas where clt_num=vnt_clt(+) and clt_num>=11;
+4)select a1.art_num,a1.art_nom, a1.art_pv from articulos a1,articulos a2 where a2.art_num=8 and a1.art_pv>a2.art_pv;
+5)select * from pesos;
+6)select art_num, art_nom,art_peso, peso_nom from articulos,pesos where art_peso between PESO_MIN and PESO_MAX order by peso_nom;
+7)select * from articulos where art_col='rojo' UNION select * from articulos where art_peso>500
+8)select clt_num from clientes intersect select vnt_clt from ventas;
+9)select clt_num from clientes minus select vnt_clt from ventas;
+10)select art_num,art_col,art_peso, max(vnt_cant),vnt_fch from articulos ,ventas where art_num=vnt_art and vnt_fch BETWEEN 910109 and 910113 group by art_um,art_col,art_peso having sum(vnt_cant)>5;
+11)
+	a)select tda_num,tda_pob,tda_ger from tiendas, ventas where tda_num=vnt_tda and vnt_art=4;//Producto Natural
+	b)select * from tiendas where tda_num in(select vnt_tda from ventas where vnt_art=4);//Consulta Anidada
+	c)select * from tiendas where 4 in (select vnt_art from ventas where tda_num=vnt_tda);//Consulta correlacionada
+	d)select * from tiendas where EXISTS(select * from ventas where tda_num=vnt_tda and vnt_art=4)//Consulta existencial
+12)select clt_num, clt_apell, clt_nom, vnt_fch from clientes c,ventas v where c.clt_num=v.vnt_clt order by vnt_fch;
+13)select * from tiendas where tda_num not in(select vnt_tda from ventas where vnt_art=4);
+14)select * from tiendas where not EXISTS(select vnt_tda from ventas where TDA_NUM=vnt_tda and vnt_art=4);
+15)select * from ventas v1 where vnt_art in(select vnt_art from ventas v2 where v2.vnt_clt=5 and v1.VNT_FCH>v2.VNT_FCH);
+16)Es una division, se hace con not exists, pero no consegui sacarla,seguramente no caiga en el examen
+17)select * from clientes where clt_num not in(select vnt_clt from ventas);
+18)select clt_num,clt_nom,max(vnt_fch) from ventas,clientes where clt_num=vnt_clt(+) group by clt_num,clt_nom;
+19)select art_num from articulos UNION select DISTINCT(vnt_art) from ventas;
+20)select clt_num,clt_nom,clt_apell,count(clt_num),sum(vnt_precio) from clientes,ventas where clt_num=vnt_clt(+) group by clt_num,clt_nom,clt_apell;
+21)select tda_ger from tiendas,ventas where tda_num=vnt_tda(+) and vnt_fch like '91%' group by tda_ger order by sum(vnt_precio) desc;
+22)select tda_num, count(DISTINCT vnt_art),tda_ger,sum(vnt_precio*vnt_cant) from tiendas,ventas where vnt_tda=tda_num(+) group by vnt_tda,tda_ger;
+23)select clt_num,clt_apell,clt_nom,clt_pais,clt_pob,vnt_cant*vnt_precio from clientes,ventas where vnt_clt=clt_num and vnt_precio*vnt_cant>=20 group by clt_num;
+24)
+	a)select * from clientes where clt_num in(select vnt_clt from ventas where vnt_art=3);
+	b)select * from clientes where EXISTS(select vnt_clt from ventas where clt_num=vnt_clt and vnt_art=3) ;
+	c)select clientes.* from clientes,ventas where vnt_clt=CLT_NUM and vnt_Art=3; 
+25)select tda_num,tda_ger, count(distinct vnt_clt),sum(vnt_precio*vnt_cant) from tiendas, ventas where vnt_tda=tda_num(+) group by tda_num,tda_ger;
+26)select art_num,art_nom,count(vnt_art),sum(vnt_cant),tda_pob from articulos,ventas,tiendas where vnt_art=art_num and vnt_tda=tda_num and tda_pob like 'madrid%' group by art_num,art_nom;
+27)Otra division

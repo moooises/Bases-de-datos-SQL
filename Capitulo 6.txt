@@ -1,0 +1,15 @@
+1)select power(4,3) "4 elevado al cubo" from dual;
+2)select (sysdate+1)-sysdate from dual; //en dias
+3)select round((sysdate+1)-sysdate) from dual;
+4)select add_month(sysdate,5)+1 from dual;
+5)select floor(20+(to_date('27/04/2020','dd/mm/yyyy')-sysdate)/365) from dual;
+6)select floor(9/2) from dual;
+7)select mod(100,3) from dual;
+8)select round(sqrt(10)) from dual;
+9)select cast(sqrt(10) as int) from dual;
+10)select cast(sqrt(10) as int)+1 from dual;
+11)select round(months_between(to_date('19/10/2018','dd/mm/yyyy'),sysdate)) from dual;
+12)select sin(30*(3.1415/180)) from dual;
+   select cos(30*(3.1415/180)) from dual;//Al parecer las funciones de oracle t
+
+//Investigar el tratamiento en horas en lugar de dias

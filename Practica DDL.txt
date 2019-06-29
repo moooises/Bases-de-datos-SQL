@@ -1,0 +1,28 @@
+create table Estudiantes(
+    est_id int auto_increment primary key,
+    est_dni    varchar(9) not null unique key,
+    est_apellidos    varchar(40)    not null,
+    est_nombre    varchar(20)    not null,
+    est_direccion    varchar(150),
+    est_cp    int,
+    est_fec_nac    date
+);
+
+ 
+create table Asignaturas(
+    asi_id    int auto_increment primary key,
+    asi_nombre varchar(20),
+    asi_titulacion varchar(50),
+    asi_semestre    char(1)
+);
+
+ 
+create table Matriculas(
+    mat_estudiante    int,
+    mat_asignatura    int,
+    mat_curso    char(1),
+    mat_calificacion    float,
+    foreign key(mat_estudiante) references Estudiantes(est_id),
+    foreign key(mat_asignatura) references Asignaturas(asi_id),
+    primary key(mat_estudiante,mat_asignatura,mat_curso)
+);
